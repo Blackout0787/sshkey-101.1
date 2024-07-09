@@ -1,4 +1,4 @@
-
+foo@bar.com
 Original file line number	Diff line number	Diff line change
 @@ -30,13 +30,27 @@ k = SSHKey.generate(
 
