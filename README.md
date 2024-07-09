@@ -2,7 +2,7 @@
 Original file line number	Diff line number	Diff line change
 @@ -30,13 +30,27 @@ k = SSHKey.generate(
 
-### Use your existing key
+### Use your existing key###
 
 Return an SSHKey object from an existing RSA or DSA or ECDSA private key (provided as a string).
 Return an SSHKey object from an existing RSA or DSA or ECDSA private key (provided as a string in PEM format).
