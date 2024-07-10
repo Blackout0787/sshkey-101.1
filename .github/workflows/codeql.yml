@@ -1,90 +1,52 @@
-# For most projects, this workflow file will not need changing; you simply need
-# to commit it to your repository.
-#
-# You may wish to alter this file to override the set of languages analyzed,
-# or to provide custom queries or build logic.
-#
-# ******** NOTE ********
-# We have attempted to detect the languages in your repository. Please check
-# the `language` matrix defined below to confirm you have the correct set of
-# supported CodeQL languages.
-#
-name: "CodeQL"
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  schedule:
-    - cron: '34 3 * * 2'
-
-jobs:
-  analyze:
-    name: Analyze (${{ matrix.language }})
-    # Runner size impacts CodeQL analysis time. To learn more, please see:
-    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
-    #   - https://gh.io/supported-runners-and-hardware-resources
-    #   - https://gh.io/using-larger-runners (GitHub.com only)
-    # Consider using larger runners or machines with greater resources for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
-    permissions:
-      # required for all workflows
-      security-events: write
-
-      # required to fetch internal or private CodeQL packs
-      packages: read
-
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
-
-    strategy:
-      fail-fast: false
-      matrix:
-        # CodeQL supports the following values keywords for 'language': 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
-        # Use `c-cpp` to analyze code written in C, C++ or both
-        # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
-        # Use 'javascript-typescript' to analyze code written in JavaScript, TypeScript or both
-        # To learn more about changing the languages that are analyzed or customizing the build mode for your analysis,
-        # see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning.
-        # If you are analyzing a compiled language, you can modify the 'build-mode' for that language to customize how
-        # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
-        # If you wish to specify custom queries, you can do so here or in a config file.
-        # By default, queries listed here will override any specified in a config file.
-        # Prefix the list here with "+" to use these queries and those in the config file.
-
-        # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
-        # queries: security-extended,security-and-quality
-
-    # If the analyze step fails for one of the languages you are analyzing with
-    # "We were unable to automatically build your code", modify the matrix above
-    # to set the build mode to "manual" for that language. Then modify this step
-    # to build your code.
-    # ℹ️ Command-line programs to run using the OS shell.
-    # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        echo 'If you are using a "manual" build mode for one or more of the' \
-          'languages you are analyzing, replace this with the commands to build' \
-          'your code, for example:'
-        echo '  make bootstrap'
-        echo '  make release'
-        exit 1
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        category: "/language:${{matrix.language}}"
+ssh-keygen -t rsa -b 4096 -m PEMssh-keygen -p -N "" -m pem -f /path/to/existing/private/key
+SSHKey.ssh_public_key_bits "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9HuXvYJPtQE/o/7TYi63yAopsrJ6TP+lDGdyQ+nVVp+5ojAIy9h8/h99UlNxjkiFT2YhI3Fl/SSHKey.valid_ssh_public_key? "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9HuXvYJPtQE/o/7TYi63yAopsrJ6TP+lDGdyQ+nVVp+5ojAIy9h8/h99UlNxjkiFT2YhI3Fl/pgNDRO4PVo6tlgb3CwiAZjSdeE5RnF79Dkj5XsM4j+FLMoXtbRw0K9ok9RKjz6ygIs1JDmaOdXexFnq4nAYU3fSLUa6WoccqTHe8bFuJoAv1gbnx09Js8YcVMD96mpTJ3V/MK5YfIv10dbtrDhGug3IS1V2J+0BB9orbQja554N+4S0I9rFBgVCpvPmQqddDHd/AdGkLv/zjEfGytjnvp68bEfDinkQkPfuxw01yd5MbcvLv39VVICWtKbqW263HT5LvSxwKorR7"
+# => true
+SHA256:Rprj0/D/TmEiasAhTP2/tYdqe3PsMgsnWLKnRQVHpJQ u0_a368@localhost
+The key's randomart image is:
++---[RSA 4096]----+
+|  ..    o++      |
+| o  .  .E+       |
+|  o ..  o .      |
+|   o ..+ .       |
+|    o *.S . o    |
+|     o &...o .   |
+|      B Bo.+.    |
+|     . =o=B.+    |
+|      ..o+o@+    |
++----[SHA256]-----+
+~/ubuntu-in-termux $
+OpenSSL::PKey::RSA.new 2048 # the CA's public/private key
+root_ca = OpenSSL::X509::Certificate.new
+root_ca.version = 2 # cf. RFC 5280 - to make it a "v3" certificate
+root_ca.serial = 1
+root_ca.subject = OpenSSL::X509::Name.parse "/DC=org/DC=ruby-lang/CN=Ruby CA"
+root_ca.issuer = root_ca.subject # root CA's are "self-signed"
+root_ca.public_key = root_key.public_key
+root_ca.not_before = Time.now
+root_ca.not_after = root_ca.not_before + 2 * 365 * 24 * 60 * 60 # 2 years validity
+ef = OpenSSL::X509::ExtensionFactory.new
+ef.subject_certificate = root_ca
+ef.issuer_certificate = root_ca
+root_ca.add_extension(ef.create_extension("basicConstraints","CA:TRUE",true))
+root_ca.add_extension(ef.create_extension("keyUsage","keyCertSign, cRLSign", true))
+root_ca.add_extension(ef.create_extension("subjectKeyIdentifier","hash",false))
+root_ca.add_extension(ef.create_extension("authorityKeyIdentifier","keyid:always",false))
+root_ca.sign(root_key, OpenSSL::Digest.new('SHA256'))pkey = OpenSSL::PKey.generate_parameters("DSA", "dsa_paramgen_bits" => 2048)
+p pkey.p.num_bits #=> 2048pkey_params = OpenSSL::PKey.generate_parameters("DSA", "dsa_paramgen_bits" => 2048)
+pkey_params.priv_key #=> nil
+pkey = OpenSSL::PKey.generate_key(pkey_params)
+pkey.priv_key #=> #<OpenSSL::BN 6277...
+SHA256:Rprj0/D/TmEiasAhTP2/tYdqe3PsMgsnWLKnRQVHpJQ u0_a368@localhost
+The key's randomart image is:
++---[RSA 4096]----+
+|  ..    o++      |
+| o  .  .E+       |
+|  o ..  o .      |
+|   o ..+ .       |
+|    o *.S . o    |
+|     o &...o .   |
+|      B Bo.+.    |
+|     . =o=B.+    |
+|      ..o+o@+    |
++----[SHA256]-----+
+~/ubuntu-in-termux $
