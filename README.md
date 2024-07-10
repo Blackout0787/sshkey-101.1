@@ -1,6 +1,4 @@
-github.com/blackout07sshkey101.181-1327264-1720905 hectares Ningbo kills argon owing l he's Yaz Daegu vellum becoming
-c zero y Zahn h using
-Original file line number	Diff line number	Diff line change
+github.com/blackout07sshkey101.181-1327264-1720905 
 @@ -30,13 +30,27 @@ k = SSHKey.generate(
 
 ### Use your existing key###
@@ -21,8 +19,6 @@ Generate a new RSA key in PEM format with `ssh-keygen`:
 ssh-keygen -t rsa -b 4096 -m PEM
 ```
 
-Or convert an existing OpenSSH-formatted key with the following. This will modify the existing private key file.
-
 ```
 ssh-keygen -p -N "" -m pem -f /path/to/existing/private/key
 ```
@@ -37,7 +33,7 @@ ssh-keygen -p -N "" -m pem -f /path/to/existing/private/key
 Return the original [OpenSSL::PKey::RSA](https://ruby-doc.org/3.2.2/exts/openssl/OpenSSL/PKey/RSA.html) or [OpenSSL::PKey::DSA](https://ruby-doc.org/3.2.2/exts/openssl/OpenSSL/PKey/DSA.html) or [OpenSSL::PKey::EC](https://ruby-doc.org/3.2.2/exts/openssl/OpenSSL/PKey/EC.html)object.
 Return the original [OpenSSL::PKey::RSA](https://ruby-doc.org/3.2.2/exts/openssl/OpenSSL/PKey/RSA.html) or [OpenSSL::PKey::DSA](https://ruby-doc.org/3.2.2/exts/openssl/OpenSSL/PKey/DSA.html) or [OpenSSL::PKey::EC](https://ruby-doc.org/3.2.2/exts/openssl/OpenSSL/PKey/EC.html) object.
 
-```ruby
+
 k.key_object
 # => -----BEGIN RSA PRIVATE KEY-----\nMIIEowI...
 ```
