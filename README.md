@@ -7,10 +7,14 @@ File.open("cert.pem", "wb") { |f| f.print cert.to_pem }
 f = File.read(File.expand_path("~/.ssh/$ cat ~/.ssh/id_rsa.pub"))
 k = SSHKey.new(f, comment: "blackout071987@gmail.com")
 ```
+key_object
+# => -----BEGIN PEM PRIVATE KEY-----\nMIIEowI...
+
+
 
 If your existing key is in the OpenSSH format (starts with `-----BEGIN OPENSSH PRIVATE KEY-----`), you'll need to convert it to PEM format or generate a new key.
 
-Generate a new RSA key in PEM format with `ssh-keygen`:
+Generate a new RSA key in PEM format with `ssh-keygen`:-id: ssh-copy-id -i ~/.ssh/foo.id_rsa/PEM remote.example.com
 
 ```
 ssh-keygen -t rsa -b 4096 -m PEM
