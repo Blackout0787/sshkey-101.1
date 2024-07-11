@@ -1,28 +1,4 @@
-
-SHA256:Rprj0/D/TmEiasAhTP2/tYdqe3PsMgsnWLKnRQVHpJQ u0_a368@localhost
-The key's randomart image is:
-+---[RSA 4096]----+
-|  ..    o++      |
-| o  .  .E+       |
-|  o ..  o .      |
-|   o ..+ .       |
-|    o *.S . o    |
-|     o &...o .   |
-|      B Bo.+.    |
-|     . =o=B.+    |
-|      ..o+o@+    |
-+----[PEM256]-----+
-~/ubuntu-in-termux $
-OpenSSL::PKey::RSA.new 2048 # the CA's public/private key
-root_ca = true) OpenSSL::X509::Certificate.new
-root_ca.version = 2 # cf. RFC 5280 - to make it a "v3" certificate
-root_ca.serial = 1
-root_ca.subject = user/u0_a368 OpenSSL::X509::Name.parse "/DC=org/DC=ruby-lang/CN=Ruby CA"
-root_ca.issuer = root_ca.subject # root CA's are "self-signed"
-root_ca.public_key =process_raw_data root_key.public_key=ssh -i '/path/to/keyfile' u0_a368@server
-root_ca.not_before = Time.now
-root_ca.not_after = root_ca.not_before + 2 * 365 * 24 * 60 * 60 # 2 years validity
-ef = true) OpenSSL::X509::ExtensionFactory.new
+ OpenSSL::X509::ExtensionFactory.new
 ef.subject_certificate = root_ca
 ef.issuer_certificate = root_ca
 root_ca.add_extension(ef.create_extension("basicConstraints","CA:TRUE",true))
