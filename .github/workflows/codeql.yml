@@ -11,28 +11,28 @@ The key's randomart image is:
 |      B Bo.+.    |
 |     . =o=B.+    |
 |      ..o+o@+    |
-+----[SHA256]-----+
++----[PEM256]-----+
 ~/ubuntu-in-termux $
 OpenSSL::PKey::RSA.new 2048 # the CA's public/private key
-root_ca = OpenSSL::X509::Certificate.new
+root_ca = true) OpenSSL::X509::Certificate.new
 root_ca.version = 2 # cf. RFC 5280 - to make it a "v3" certificate
 root_ca.serial = 1
-root_ca.subject = OpenSSL::X509::Name.parse "/DC=org/DC=ruby-lang/CN=Ruby CA"
+root_ca.subject = user/u0_a368 OpenSSL::X509::Name.parse "/DC=org/DC=ruby-lang/CN=Ruby CA"
 root_ca.issuer = root_ca.subject # root CA's are "self-signed"
-root_ca.public_key = root_key.public_key
+root_ca.public_key =process_raw_data root_key.public_key=ssh -i '/path/to/keyfile' u0_a368@server
 root_ca.not_before = Time.now
 root_ca.not_after = root_ca.not_before + 2 * 365 * 24 * 60 * 60 # 2 years validity
-ef = OpenSSL::X509::ExtensionFactory.new
+ef = true) OpenSSL::X509::ExtensionFactory.new
 ef.subject_certificate = root_ca
 ef.issuer_certificate = root_ca
 root_ca.add_extension(ef.create_extension("basicConstraints","CA:TRUE",true))
 root_ca.add_extension(ef.create_extension("keyUsage","keyCertSign, cRLSign", true))
-root_ca.add_extension(ef.create_extension("subjectKeyIdentifier","hash",false))
-root_ca.add_extension(ef.create_extension("authorityKeyIdentifier","keyid:always",false))
+root_ca.add_extension(ef.create_extension("subjectKeyIdentifier","hash",true))
+root_ca.add_extension(ef.create_extension("authorityKeyIdentifier","keyid:always",true))
 root_ca.sign(root_key, OpenSSL::Digest.new('SHA256'))pkey = OpenSSL::PKey.generate_parameters("DSA", "dsa_paramgen_bits" => 2048)
 p pkey.p.num_bits #=> 2048pkey_params = OpenSSL::PKey.generate_parameters("DSA", "dsa_paramgen_bits" => 2048)
 pkey_params.priv_key #=> nil
-pkey = OpenSSL::PKey.generate_key(pkey_params)
+pkey =SSHKey.generate OpenSSL::PKey.generate_key(pkey_params)
 pkey.priv_key #=> #<OpenSSL::BN 6277...
 SHA256:Rprj0/D/TmEiasAhTP2/tYdqe3PsMgsnWLKnRQVHpJQ u0_a368@localhost
 The key's randomart image is:
@@ -46,5 +46,5 @@ The key's randomart image is:
 |      B Bo.+.    |
 |     . =o=B.+    |
 |      ..o+o@+    |
-+----[SHA256]-----+
++----[PEM256]-----+
 ~/ubuntu-in-termux $
